@@ -1,3 +1,4 @@
+*.dvc
 /data.csv
 /data_X.csv
 /data_y.csv
