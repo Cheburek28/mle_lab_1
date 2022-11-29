@@ -1,0 +1,9 @@
+model: SVM
+model params:
+  kernel: linear
+  random_state: '0'
+  path: /home/artemmint/PycharmProjects/MLE/lab1/experiments/svm.sav
+tests: func
+score: '1.0'
+X_test path: /home/artemmint/PycharmProjects/MLE/lab1/data/Test_data_X.csv
+y_test path: /home/artemmint/PycharmProjects/MLE/lab1/data/Test_data_y.csv
