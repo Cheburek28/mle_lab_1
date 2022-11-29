@@ -17,7 +17,7 @@ from logger import Logger
 SHOW_LOG = True
 
 
-class Predictor():
+class Predictor:
 
     def __init__(self) -> None:
         logger = Logger(SHOW_LOG)
