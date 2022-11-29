@@ -1,6 +1,7 @@
 import configparser
 import os
 import pandas as pd
+import numpy as np
 from sklearn.model_selection import train_test_split
 import sys
 import traceback
@@ -28,9 +29,17 @@ class DataMaker:
         self.log.info("DataMaker is ready")
 
     def get_data(self) -> bool:
+        CORR_THRESHOLD = 0.7
+
         dataset = pd.read_csv(self.data_path)
-        X = pd.DataFrame(dataset.iloc[:, 1:5].values)
-        y = pd.DataFrame(dataset.iloc[:, 5:].values)
+        dataset['diagnosis'].replace({'M': 1, 'B': 0}, inplace=True)
+        corr = dataset.corr()
+        corr_filter = np.abs(corr["diagnosis"]) > CORR_THRESHOLD
+        feautures_names = corr.columns[corr_filter].to_list()
+
+        y = dataset["diagnosis"]
+        X = dataset[feautures_names].drop(["diagnosis"], axis=1)
+
         X.to_csv(self.X_path, index=True)
         y.to_csv(self.y_path, index=True)
         if os.path.isfile(self.X_path) and os.path.isfile(self.y_path):
