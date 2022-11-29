@@ -1,0 +1,4 @@
+{"X": [{"radius_mean":21.56,"perimeter_mean":142.0,"area_mean":1479.0,"concave points_mean":0.1389,"radius_worst":25.45,"perimeter_worst":166.1,"area_worst":2027.0,"concave points_worst":0.2216}, 
+{"radius_mean":20.13,"perimeter_mean":131.2,"area_mean":1261.0,"concave points_mean":0.09791,"radius_worst":23.69,"perimeter_worst":155.0,"area_worst":1731.0,"concave points_worst":0.1628}, 
+{"radius_mean":16.6,"perimeter_mean":108.3,"area_mean":858.1,"concave points_mean":0.05302,"radius_worst":18.98,"perimeter_worst":126.7,"area_worst":1124.0,"concave points_worst":0.1418}], 
+"y": [{"diagnosis": 1}, {"diagnosis": 1}, {"diagnosis": 1}]}

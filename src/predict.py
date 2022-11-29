@@ -30,10 +30,10 @@ class Predictor:
                                  type=str,
                                  help="Select model",
                                  required=True,
-                                 default="LOG_REG",
-                                 const="LOG_REG",
+                                 default="SVM",
+                                 const="SVM",
                                  nargs="?",
-                                 choices=["LOG_REG", "RAND_FOREST", "KNN", "GNB", "SVM", "D_TREE"])
+                                 choices=["SVM"])
         self.parser.add_argument("-t",
                                  "--tests",
                                  type=str,

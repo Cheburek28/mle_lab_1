@@ -1,0 +1,4 @@
+{"X": [{"radius_mean":9.504,"perimeter_mean":60.34,"area_mean":273.9,"concave points_mean":0.02076,"radius_worst":10.23,"perimeter_worst":65.13,"area_worst":314.9,"concave points_worst":0.06227},
+{"radius_mean":16.74,"perimeter_mean":110.1,"area_mean":869.5,"concave points_mean":0.06018,"radius_worst":20.01,"perimeter_worst":133.5,"area_worst":1229.0,"concave points_worst":0.1813},
+{"radius_mean":19.21,"perimeter_mean":125.5,"area_mean":1152.0,"concave points_mean":0.08994,"radius_worst":26.14,"perimeter_worst":170.1,"area_worst":2145.0,"concave points_worst":0.2091}
+], "y": [{"count": 0}, {"count": 1}, {"count": 1}]}

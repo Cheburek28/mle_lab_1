@@ -13,7 +13,7 @@ from logger import Logger
 SHOW_LOG = True
 
 
-class MultiModel:
+class SVMModel:
 
     def __init__(self) -> None:
         logger = Logger(SHOW_LOG)
@@ -35,11 +35,12 @@ class MultiModel:
         self.svm_path = os.path.join(self.project_path, "svm.sav")
         self.log.info("MultiModel is ready")
 
-    def svm(self, use_config: bool, kernel="linear", random_state=0, predict=False) -> bool:
+    def svm(self, use_config: bool = False, kernel="linear", random_state=0, predict=False) -> bool:
         if use_config:
             try:
-                classifier = SVC(kernel=self.config["SVM"]["kernel"], random_state=self.config.getint(
-                    "SVC", "random_state"))
+                kernel = self.config["SVM"]["kernel"]
+                random_state = self.config.getint("SVM", "random_state")
+                classifier = SVC(kernel=kernel, random_state=random_state)
             except KeyError:
                 self.log.error(traceback.format_exc())
                 self.log.warning(f'Using config:{use_config}, no params')
@@ -72,5 +73,5 @@ class MultiModel:
 
 
 if __name__ == "__main__":
-    multi_model = MultiModel()
-    multi_model.svm(use_config=False, predict=True)
+    multi_model = SVMModel()
+    multi_model.svm(use_config=True, predict=True)
