@@ -1,8 +1,1 @@
 *.dvc
-/data.csv
-/data_X.csv
-/data_y.csv
-/Test_data_X.csv
-/Test_data_y.csv
-/Train_data_X.csv
-/Train_data_y.csv
