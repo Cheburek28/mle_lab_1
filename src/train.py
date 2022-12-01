@@ -74,4 +74,4 @@ class SVMModel:
 
 if __name__ == "__main__":
     multi_model = SVMModel()
-    multi_model.svm(use_config=True, predict=True)
+    multi_model.svm(use_config=False, predict=True)

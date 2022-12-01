@@ -1,3 +1,2 @@
-2022-11-30 00:23:25,041 — __main__ — INFO — Predictor is ready
-2022-11-30 00:23:25,067 — __main__ — INFO — /home/artemmint/PycharmProjects/MLE/lab1/experiments/svm.sav passed func test /home/artemmint/PycharmProjects/MLE/lab1/tests/test_0.json
-2022-11-30 00:23:25,072 — __main__ — INFO — /home/artemmint/PycharmProjects/MLE/lab1/experiments/svm.sav passed func test /home/artemmint/PycharmProjects/MLE/lab1/tests/test_1.json
+2022-12-01 14:45:33,778 — train — INFO — MultiModel is ready
+2022-12-01 14:45:33,782 — train — INFO — /home/artemmint/PycharmProjects/MLE/lab1/experiments/svm.sav is saved
