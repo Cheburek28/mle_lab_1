@@ -22,7 +22,7 @@ options {
 
         stage('Checkout repo dir') {
             steps {
-                sh 'cd mle_lab_1 && dir'
+                sh 'cd mle_lab_1'
 				}
 			}
 
