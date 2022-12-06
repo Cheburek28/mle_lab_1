@@ -16,7 +16,7 @@ options {
         stage('Clone github repository') {
             steps {
                 cleanWs()
-                sh 'git clone -b main https://github.com/Cheburek28/mle_lab_1.git'
+                sh 'git clone -b develop https://github.com/Cheburek28/mle_lab_1.git'
 				}
 			}
 
