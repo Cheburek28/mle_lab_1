@@ -16,13 +16,13 @@ options {
         stage('Clone github repository') {
             steps {
                 cleanWs()
-                bat 'chcp 65001 && git clone -b main https://github.com/Cheburek28/mle_lab_1.git'
+                sh 'git clone -b main https://github.com/Cheburek28/mle_lab_1.git'
 				}
 			}
 
         stage('Checkout repo dir') {
             steps {
-                bat 'chcp 65001 && cd mle_lab_1 && dir'
+                sh 'cd mle_lab_1 && dir'
 				}
 			}
 
@@ -31,7 +31,7 @@ options {
                 //withCredentials([usernamePassword(credentialsId: 'mle-template', passwordVariable: 'DOCKER_REGISTRY_PWD', usernameVariable: 'DOCKER_REGISTRY_USER')]){
                 //bat 'chcp 65001 && echo %DOCKER_REGISTRY_PWD% | docker login -u %DOCKER_REGISTRY_USER% --password-stdin'}
                 //bat 'chcp 65001 && echo %DOCKERHUB_CREDS_PSW% | docker login -u %DOCKERHUB_CREDS_USR% --password-stdin'
-                bat 'chcp 65001 && docker login -u %DOCKERHUB_CREDS_USR% -p %DOCKERHUB_CREDS_PSW%'
+                sh 'docker login -u %DOCKERHUB_CREDS_USR% -p %DOCKERHUB_CREDS_PSW%'
                 }
             }
 
@@ -39,12 +39,11 @@ options {
             steps {
                 script {
                     try {
-                        bat 'chcp 65001 && cd mle-template && docker-compose build'
+                        sh 'cd mle-template && docker-compose build'
                         }
 
                     finally {
-                    bat '''
-                        chcp 65001
+                    sh '''
                         cd mle_lab_1
                         docker-compose up -d
                         '''
@@ -61,7 +60,7 @@ options {
         stage('Checkout container logs') {
             steps {
                 dir("mle_lab_1") {
-                        bat '''
+                        sh '''
                             docker-compose up -d
                             for /f %%i in ('docker ps -qf "name=^mle_lab_1-web-1"') do set containerId=%%i
                             echo %containerId%
@@ -79,7 +78,7 @@ options {
         stage('Checkout coverage report'){
             steps{
                 dir("mle_lab_1"){
-                    bat '''
+                    sh '''
                     docker-compose logs -t --tail 10
                     '''
                 }
@@ -88,14 +87,14 @@ options {
 
         stage('Push'){
             steps{
-                bat 'chcp 65001 && docker push cheburek28/mle_lab_1:latest'
+                sh 'docker push cheburek28/mle_lab_1:latest'
             }
         }
 	}
 
     post {
         always {
-            bat 'chcp 65001 && docker logout'
+            sh 'docker logout'
         }
     }
 }

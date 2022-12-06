@@ -1,0 +1,1 @@
+Starting Jenkins linux mint: https://www.youtube.com/watch?v=0U4VMQsHBfc (java -jar path_to_war_file/jenkins.war)
