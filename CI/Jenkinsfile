@@ -8,10 +8,11 @@ pipeline {
         LANGUAGE = "en_US.UTF-8"
     }
 
-options {
+    options {
         timestamps()
         skipDefaultCheckout(true)
 	}
+
     stages {
         stage('Clone github repository') {
             steps {
@@ -94,7 +95,7 @@ options {
 //
     post {
         always {
-//             sh 'docker logout'
+            sh 'docker logout'
         }
     }
 }
