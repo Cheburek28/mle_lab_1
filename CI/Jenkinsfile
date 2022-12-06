@@ -39,7 +39,7 @@ pipeline {
             steps {
                 script {
                     try {
-                        sh 'cd mle-template && docker-compose build'
+                        sh 'cd mle_lab_1 && docker-compose build'
                         }
 
                     finally {
