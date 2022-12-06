@@ -1,6 +1,5 @@
 pipeline {
     agent any
-csdcacsdcas
 //     environment {
 //         DOCKERHUB_CREDS=credentials('mle_lab_1')
 //         LC_ALL = "en_US.UTF-8"
