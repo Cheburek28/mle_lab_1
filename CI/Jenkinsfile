@@ -1,4 +1,3 @@
-node {
 pipeline {
     agent any
 
@@ -95,8 +94,11 @@ options {
 
     post {
         always {
+            script {
+                    if (getContext(hudson.FilePath)) {
+                    deleteDir()
+            }
             sh 'docker logout'
         }
     }
-}
 }
