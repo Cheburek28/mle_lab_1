@@ -26,14 +26,14 @@ pipeline {
 				}
 			}
 
-//         stage('Login'){
-//             steps{
-//                 //withCredentials([usernamePassword(credentialsId: 'mle-template', passwordVariable: 'DOCKER_REGISTRY_PWD', usernameVariable: 'DOCKER_REGISTRY_USER')]){
-//                 //bat 'chcp 65001 && echo %DOCKER_REGISTRY_PWD% | docker login -u %DOCKER_REGISTRY_USER% --password-stdin'}
-//                 //bat 'chcp 65001 && echo %DOCKERHUB_CREDS_PSW% | docker login -u %DOCKERHUB_CREDS_USR% --password-stdin'
-//                 sh 'docker login -u %DOCKERHUB_CREDS_USR% -p %DOCKERHUB_CREDS_PSW%'
-//                 }
-//             }
+        stage('Login'){
+            steps{
+                //withCredentials([usernamePassword(credentialsId: 'mle-template', passwordVariable: 'DOCKER_REGISTRY_PWD', usernameVariable: 'DOCKER_REGISTRY_USER')]){
+                //bat 'chcp 65001 && echo %DOCKER_REGISTRY_PWD% | docker login -u %DOCKER_REGISTRY_USER% --password-stdin'}
+                //bat 'chcp 65001 && echo %DOCKERHUB_CREDS_PSW% | docker login -u %DOCKERHUB_CREDS_USR% --password-stdin'
+                sh 'docker login -u $DOCKERHUB_CREDS_USR -p $DOCKERHUB_CREDS_PSW' // Переменные надо задать заранее
+                }
+            }
 
         stage('Create and run docker container') {
             steps {
@@ -69,7 +69,7 @@ pipeline {
                                   if [ "%$containerId" == "" ]
                                   then
                                     (echo "No container running")
-                                  else (docker logs --tail 1000 -f "$containerId")
+                                  else (docker logs --tail 1000 -f "$containerId"; docker run --name mle_lab_1_web_1 && coverage run src/unit_tests/test_preprocess.py && coverage run -a src/unit_tests/test_training.py && coverage report -m)
                                   fi
                                 done
                         '''
