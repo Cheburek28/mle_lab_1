@@ -33,7 +33,7 @@ options {
 
     post {
         always {
-            sh 'docker stop mle_lab_1 && docker rm mle_lab_1'
+            sh 'docker rm mle_lab_1'
         }
     }
 }
