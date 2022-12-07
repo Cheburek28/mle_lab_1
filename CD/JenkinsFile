@@ -2,7 +2,7 @@ pipeline {
     agent any
 sdcasc
     environment {
-        DOCKERHUB_CREDS=credentials('mle-template')
+        DOCKERHUB_CREDS=credentials('mle_lab_1')
         LC_ALL = "en_US.UTF-8"
         LANG    = "en_US.UTF-8"
         LANGUAGE = "en_US.UTF-8"
@@ -25,7 +25,7 @@ options {
         stage('Run container'){
             steps{
                 bat '''
-                        docker run --name mle-template -p 80:5556 -d cheburek28/mle_lab_1:latest
+                        docker run --name mle_lab_1 -p 80:5556 -d cheburek28/mle_lab_1:latest
                 '''
             }
         }
@@ -33,7 +33,7 @@ options {
 
     post {
         always {
-            bat 'docker stop mmle_lab_1'
+            bat 'docker stop mle_lab_1'
         }
     }
 }
