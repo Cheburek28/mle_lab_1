@@ -24,7 +24,7 @@ options {
 
         stage('Run container'){
             steps{
-                bat '''
+                sh '''
                         docker run --name mle_lab_1 -p 80:5556 -d cheburek28/mle_lab_1:latest
                 '''
             }
@@ -33,7 +33,7 @@ options {
 
     post {
         always {
-            bat 'docker stop mle_lab_1'
+            sh 'docker stop mle_lab_1'
         }
     }
 }
