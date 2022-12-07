@@ -57,23 +57,25 @@ pipeline {
         //use for single container (with auth):
         //docker run --name mle-template_web_1 cd app && coverage run src/unit_tests/test_preprocess.py && coverage run -a src/unit_tests/test_training.py && coverage report -m
 
-//         stage('Checkout container logs') {
-//             steps {
-//                 dir("mle_lab_1") {
-//                         sh '''
-//                             docker-compose up -d
-//                             for /f %%i in ('docker ps -qf "name=^mle_lab_1_web_1"') do set containerId=%%i
-//                             echo %containerId%
-//                             IF "%containerId%" == "" (
-//                                 echo "No container running"
-//                             )
-//                             ELSE (
-//                                 docker logs --tail 1000 -f %containerId%
-//                                 )
-//                         '''
-//                     }
-//             }
-//         }
+        stage('Checkout container logs') {
+            steps {
+                dir("mle_lab_1") {
+                        sh '''
+                            docker-compose up -d
+                            for i in $(docker ps -aqf "name=mle_lab_1_web_1")
+                                do
+                                  containerId=$i
+                                  echo "$containerId"
+                                  if [ "%$containerId" == "" ]
+                                  then
+                                    (echo "No container running")
+                                  else (docker logs --tail 1000 -f "$containerId")
+                                  fi
+                                done
+                        '''
+                    }
+            }
+        }
 
         stage('Checkout coverage report'){
             steps{
