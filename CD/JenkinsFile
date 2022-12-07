@@ -16,8 +16,8 @@ options {
 
         stage('Pull image'){
             steps{
-                bat '''
-                        docker pull altairzero/mle-template:latest
+                sh '''
+                        docker pull cheburek28/mle_lab_1:latest
                 '''
             }
         }
@@ -25,7 +25,7 @@ options {
         stage('Run container'){
             steps{
                 bat '''
-                        docker run --name mle-template -p 80:5556 -d altairzero/mle-template:latest
+                        docker run --name mle-template -p 80:5556 -d cheburek28/mle_lab_1:latest
                 '''
             }
         }
@@ -33,7 +33,7 @@ options {
 
     post {
         always {
-            bat 'docker stop mle-template && docker logout'
+            bat 'docker stop mmle_lab_1'
         }
     }
 }
