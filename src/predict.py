@@ -18,8 +18,18 @@ SHOW_LOG = True
 
 
 class Predictor:
-
+    """
+        Class for predict data using saved models
+    """
     def __init__(self) -> None:
+        """
+            Re-defined __init__ method which sets predicting model
+        Args: 
+            log - logger object which uses for logging events 
+            config - data readed from config.ini which consist of paths to datasets and saved models
+            parser - python programm start arguments parser which uses to set type of current tests and model
+            X_train, X_test, y_pred, y_test - datasets of features and results 
+        """
         logger = Logger(SHOW_LOG)
         self.config = configparser.ConfigParser()
         self.log = logger.get_logger(__name__)
@@ -57,6 +67,9 @@ class Predictor:
         self.log.info("Predictor is ready")
 
     def predict(self) -> bool:
+        """
+            Class method which realises model prediction, tests and count accuracy score
+        """
         args = self.parser.parse_args()
         try:
             classifier = pickle.load(
