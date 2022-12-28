@@ -13,8 +13,17 @@ SHOW_LOG = True
 
 
 class DataMaker:
-
+    """
+        Class for preparing data which will be used for training and predicting
+    """
     def __init__(self) -> None:
+        """
+            Re-defined __init__ method which sets predicting model
+        Args: 
+            log - logger object which uses for logging events 
+            config - data readed from config.ini which consist of paths to datasets and saved model
+            X_train, X_test, y_pred, y_test - datasets of features and results 
+        """
         logger = Logger(SHOW_LOG)
         self.config = configparser.ConfigParser()
         self.log = logger.get_logger(__name__)
@@ -29,6 +38,9 @@ class DataMaker:
         self.log.info("DataMaker is ready")
 
     def get_data(self) -> bool:
+        """
+            Class method which reads data from files and sets object variables
+        """
         CORR_THRESHOLD = 0.7
 
         dataset = pd.read_csv(self.data_path)
@@ -52,6 +64,9 @@ class DataMaker:
             return False
 
     def split_data(self, test_size=TEST_SIZE) -> bool:
+        """
+            Class method which splits dataset to train and test parts
+        """
         self.get_data()
         try:
             X = pd.read_csv(self.X_path, index_col=0)
@@ -78,6 +93,9 @@ class DataMaker:
             os.path.isfile(self.test_path[1])
 
     def save_splitted_data(self, df: pd.DataFrame, path: str) -> bool:
+        """
+            Class method which saves splits data
+        """
         df = df.reset_index(drop=True)
         df.to_csv(path, index=True)
         self.log.info(f'{path} is saved')
