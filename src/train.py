@@ -14,8 +14,18 @@ SHOW_LOG = True
 
 
 class SVMModel:
-
+    """
+        Class for training and saving SVM model
+    """
     def __init__(self) -> None:
+        """
+            Re-defined __init__ method which sets model parameters
+        Args: 
+            log - logger object which uses for logging events 
+            config - data readed from config.ini which consist of paths to datasets and saved models
+            parser - python programm start arguments parser which uses to set type of current tests and model
+            X_train, X_test, y_pred, y_test - datasets of features and results 
+        """
         logger = Logger(SHOW_LOG)
         self.config = configparser.ConfigParser()
         self.log = logger.get_logger(__name__)
@@ -36,6 +46,9 @@ class SVMModel:
         self.log.info("MultiModel is ready")
 
     def svm(self, use_config: bool = False, kernel="linear", random_state=0, predict=False) -> bool:
+        """
+            Class method which initialies SVM hyper parameters such as kernel and random state and fits data
+        """
         if use_config:
             try:
                 kernel = self.config["SVM"]["kernel"]
@@ -61,6 +74,9 @@ class SVMModel:
         return self.save_model(classifier, self.svm_path, "SVM", params)
 
     def save_model(self, classifier, path: str, name: str, params: dict) -> bool:
+        """
+            Class method which saves model to file for future using
+        """
         self.config[name] = params
         os.remove('config.ini')
         with open('config.ini', 'w') as configfile:
